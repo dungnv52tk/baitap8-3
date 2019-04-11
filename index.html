@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tương tác công tắc - bóng đèn</title>
+</head>
+<body>
+<script>
+    let ElectricLamp = function () {
+        this.setLampStatus = function () {
+            this.setLampStatus = true;
+        }
+        this.getLampStatus = function () {
+            return this.setLampStatus;
+        }
+        this.turnOffLamp = function () {
+            return this.setLampStatus = true;
+        }
+        this.turnOnLamp = function () {
+            return this.setLampStatus = false;
+        }
+    }
+    let SwitchButton = function () {
+        this.time = 0;
+        this.setLamp = function (electricLamp) {
+            this.lamp = electricLamp;
+        }
+        this.onOff = function () {
+            if (this.lamp.getLampStatus()) {
+                document.write('Switch of Lamp is off, the time of switch off: ' + this.time + '<br>');
+            } else {
+                document.write('Switch of Lamp is on, the time of switch off: ' + this.time + '<br>');
+            }
+        }
+
+        this.switchOff = function () {
+            return this.lamp.turnOffLamp();
+        }
+        this.switchOn = function () {
+            this.time++;
+            return this.lamp.turnOnLamp();
+        }
+    }
+    let electricLamp = new ElectricLamp();
+    let switchButton = new SwitchButton();
+    switchButton.setLamp(electricLamp);
+    for (let i = 1; i <= 10; i++) {
+        switchButton.switchOn();
+        switchButton.onOff();
+        switchButton.switchOff();
+        switchButton.onOff();
+    }
+
+</script>
+</body>
+</html>
